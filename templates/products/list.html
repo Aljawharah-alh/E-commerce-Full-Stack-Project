@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block hero %}
+<div class="product-hero shadow-sm">
+    <div class="hero-overlay d-flex align-items-center justify-content-center">
+        <div class="text-center text-white">
+            <h1 class="display-3 fw-black">إصداراتنا الحصرية</h1>
+            <p class="lead">قطع مختارة بعناية لتناسب ذوقك</p>
+        </div>
+    </div>
+</div>
+<style>
+    .product-hero { 
+        background: linear-gradient(135deg, #5D4037 0%, #F06292 100%);
+        height: 300px; 
+        position: relative;
+        border-radius: 0 0 40px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-overlay { 
+        background: rgba(0, 0, 0, 0.1); 
+        position: absolute; 
+        inset: 0; 
+        border-radius: 0 0 40px 40px;
+    }
+
+    .fw-black { 
+        font-weight: 900; 
+        letter-spacing: -1px; 
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <form method="GET" action="{% url 'list' %}" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="search" class="form-control" placeholder="ابحث عن منتج..." value="{{ request.GET.search }}">
+        <input type="hidden" name="category_id" value="{{ request.GET.category_id }}">
+        <button class="btn btn-brown text-white" type="submit" style="background-color: var(--brown);">بحث</button>
+    </div>
+</form>
+    {% for product in prod %}
+    <div class="col-6 col-md-4 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm overflow-hidden product-card">
+            <div style="height: 200px;">
+                <img src="{{ product.image }}" class="w-100 h-100" style="object-fit: cover;" alt="{{ product.name }}">
+            </div>
+            <div class="card-body text-center d-flex flex-column p-3">
+                <h6 class="fw-bold mb-2">{{ product.name }}</h6>
+                <div class="mt-auto">
+                    <span class="d-block mb-3 fw-bold fs-5" style="color: var(--brown);">{{ product.price }} ر.س</span>
+                    <button class="btn btn-login w-100 py-2">إضافة للسلة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<style>
+    .product-card { border-radius: 20px; transition: 0.3s; }
+    .product-card:hover { transform: translateY(-5px); }
+</style>
+{% endblock %}

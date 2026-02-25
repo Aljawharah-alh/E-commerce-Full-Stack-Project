@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block hero %}
+<section class="creative-hero-slim">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12 text-center text-white z-index-2">
+                
+                <h1 class="display-4 fw-black mb-2 text-glow">عالمك الخاص من <span class="text-highlight">الأناقة</span></h1>
+                <p class="lead opacity-90 mb-3 small-text">تسوقي حسب الفئة التي تفضلينها واكتشفي ذوقك الرفيع</p>
+                <a href="#categories" class="btn btn-light-pink px-5 py-2 rounded-pill shadow-sm">ابدئي الآن</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mini-blob"></div>
+    <div class="mini-blob-2"></div>
+</section>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+
+    .creative-hero-slim {
+        font-family: 'Cairo', sans-serif;
+        height: 320px; 
+        background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+        position: relative;
+        overflow: hidden;
+        border-radius: 0 0 50px 50px;
+        margin-bottom: 20px;
+        direction: rtl;
+    }
+
+    .hero-badge {
+        background: rgba(255, 255, 255, 0.25);
+        display: inline-block;
+        padding: 4px 15px;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .text-glow {
+        text-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        font-weight: 900;
+        letter-spacing: -1px;
+    }
+
+    .text-highlight {
+        color: #fff;
+        border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .mini-blob {
+        position: absolute;
+        top: -20%;
+        left: 5%;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        filter: blur(40px);
+    }
+
+    .mini-blob-2 {
+        position: absolute;
+        bottom: -10%;
+        right: 5%;
+        width: 180px;
+        height: 180px;
+        background: rgba(255, 77, 109, 0.2);
+        border-radius: 50%;
+        filter: blur(40px);
+    }
+
+    .btn-light-pink {
+        background: white;
+        color: #ff4d6d;
+        font-weight: 700;
+        transition: 0.3s;
+        border: none;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+
+    .btn-light-pink:hover {
+        background: #ff4d6d;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3) !important;
+    }
+
+    .z-index-2 { position: relative; z-index: 2; }
+    .small-text { font-size: 1.1rem; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="categories" class="container mt-4">
+    <div class="text-center mb-4">
+        <h3 class="fw-bold" style="color: #5d4037;">أقسام المتجر</h3>
+        <hr class="mx-auto" style="width: 50px; height: 3px; background: #ff4d6d; border: none; opacity: 1;">
+    </div>
+
+    <div class="row g-4">
+        {% for item in cat %}
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="card h-100 border-0 shadow-sm text-center p-3 category-box">
+                <div class="mb-3 fs-1 text-accent"><i class="bi bi-grid-fill"></i></div>
+                <h5 class="fw-bold mb-3">{{ item.name }}</h5>
+                <a href="/list/?category_id={{ item.id }}" class="btn btn-sm btn-outline-brown rounded-pill px-4">اكتشفي الآن</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    /* الحفاظ على ستايل الكروت الأصلي الخاص بك مع لمسات وردية */
+    .category-box { 
+        border-radius: 20px; 
+        border: 1px solid #ffdae0 !important; 
+        transition: 0.4s ease-in-out; 
+    }
+    
+    .category-box:hover { 
+        transform: translateY(-8px); 
+        background: #fff5f8; 
+        box-shadow: 0 12px 25px rgba(255, 175, 189, 0.2) !important; 
+    }
+
+    .text-accent { color: #ff4d6d; }
+    
+    .btn-outline-brown { 
+        border-color: #5d4037; 
+        color: #5d4037; 
+        font-weight: 600;
+    }
+    
+    .btn-outline-brown:hover { 
+        background: #5d4037; 
+        color: white; 
+    }
+</style>
+{% endblock %}
