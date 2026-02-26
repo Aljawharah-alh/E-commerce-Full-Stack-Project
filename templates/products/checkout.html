@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row g-4 text-end" style="direction: rtl;">
+    <div class="col-md-7">
+        <div class="card p-4 shadow-sm border-0">
+            <h4 class="mb-4">نموذج دفع تجريبي</h4>
+            <form action="{% url 'create_invoice' %}" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">اسم الزبون:</label>
+                    <input type="text" name="customer_name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">رقم البطاقة:</label>
+                    <input type="text" class="form-control" placeholder="xxxx xxxx xxxx xxxx">
+                </div>
+                <input type="hidden" name="total_price" value="{{ total_price }}">
+                <button type="submit" class="btn btn-login w-100">تأكيد الدفع وإنشاء الفاتورة</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-md-5">
+        <div class="card p-4 shadow-sm border-0 bg-light">
+            <h4 class="mb-3">ملخص المنتجات</h4>
+            {% for id, item in cart.items %}
+            <div class="d-flex justify-content-between mb-2">
+                <span>{{ item.name }} (x{{ item.quantity }})</span>
+                <span>{{ item.price }} ريال</span>
+            </div>
+            {% endfor %}
+            <hr>
+            <h5 class="text-accent">الإجمالي: {{ total_price }} ريال</h5>
+        </div>
+    </div>
+</div>
+{% endblock %}

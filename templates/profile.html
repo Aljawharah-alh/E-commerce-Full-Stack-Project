@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="text-center">
+    <div class="card shadow-sm p-5 mx-auto border-0" style="max-width: 500px; border-radius: 30px; background: white;">
+        <i class="bi bi-person-circle mb-3" style="font-size: 4rem; color: var(--pink);"></i>
+        <h2 class="fw-bold mb-4" style="color: var(--brown);">بيانات المشتركة</h2>
+        <div class="text-end p-3 rounded-3 mb-4" style="background: var(--bg);">
+            <p><strong>اسم المستخدم:</strong> {{ user.username }}</p>
+            <p><strong>البريد الإلكتروني:</strong> {{ user.email|default:"لا يوجد إيميل" }}</p>
+        </div>
+        <a href="{% url 'category_index' %}" class="btn btn-login w-100">العودة للتسوق</a>
+    </div>
+</div>
+{% endblock %}

@@ -19,10 +19,19 @@ from django.urls import path
 from category import views as cat
 from products import views as prod
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',cat.index,name='category_index'),
     path('list/',prod.list,name='list'),
     path('contact/', prod.contact_view, name='contact'),
     path('success/', prod.success_view, name='contact_success'),
+    path('register/', prod.register_view, name='register'),
+    path('login/', prod.login_view, name='login'),
+    path('logout/', prod.logout_view, name='logout'),
+    path('profile/', prod.profile_view, name='profile'),
+    path('add-to-cart/<int:pid>/', prod.add_to_cart, name='add_to_cart'),
+    path('cart/', prod.cart_view, name='cart_view'),
+    path('checkout/', prod.checkout, name='checkout'),
+    path('create-invoice/', prod.create_invoice, name='create_invoice'),
 ]

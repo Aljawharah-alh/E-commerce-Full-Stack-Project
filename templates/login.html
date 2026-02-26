@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5 card p-4 shadow-sm border-0" style="border-radius: 20px;">
+        <h2 class="text-center mb-4" style="color: var(--accent);">تسجيل الدخول</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-login w-100 mt-3">دخول</button>
+        </form>
+        <p class="text-center mt-3 small">ليس لديكِ حساب؟ <a href="{% url 'register' %}" style="color: var(--accent);">اشتركي الآن</a></p>
+    </div>
+</div>
+{% endblock %}

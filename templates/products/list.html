@@ -35,33 +35,56 @@
 {% endblock %}
 
 {% block content %}
-<div class="row g-4">
-    <form method="GET" action="{% url 'list' %}" class="mb-4">
-    <div class="input-group">
-        <input type="text" name="search" class="form-control" placeholder="ابحث عن منتج..." value="{{ request.GET.search }}">
-        <input type="hidden" name="category_id" value="{{ request.GET.category_id }}">
-        <button class="btn btn-brown text-white" type="submit" style="background-color: var(--brown);">بحث</button>
-    </div>
-</form>
-    {% for product in prod %}
-    <div class="col-6 col-md-4 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm overflow-hidden product-card">
-            <div style="height: 200px;">
-                <img src="{{ product.image }}" class="w-100 h-100" style="object-fit: cover;" alt="{{ product.name }}">
-            </div>
-            <div class="card-body text-center d-flex flex-column p-3">
-                <h6 class="fw-bold mb-2">{{ product.name }}</h6>
-                <div class="mt-auto">
-                    <span class="d-block mb-3 fw-bold fs-5" style="color: var(--brown);">{{ product.price }} ر.س</span>
-                    <button class="btn btn-login w-100 py-2">إضافة للسلة</button>
+<div class="container py-4">
+    <form method="GET" action="{% url 'list' %}" class="mb-5">
+        <div class="input-group shadow-sm" style="border-radius: 50px; overflow: hidden;">
+            <input type="text" name="search" class="form-control border-0 px-4" placeholder="ابحثي عن قطعة مميزة..." value="{{ request.GET.search }}">
+            <input type="hidden" name="category_id" value="{{ request.GET.category_id }}">
+            <button class="btn btn-brown px-4" type="submit" style="background-color: var(--brown); color: white;">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </form>
+
+    <div class="row g-4">
+        {% for product in prod %}
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="card h-100 border-0 shadow-sm overflow-hidden product-card">
+                <div style="height: 220px; position: relative;">
+                    <img src="{{ product.image.url }}" class="w-100 h-100" style="object-fit: cover;" alt="{{ product.name }}">
+                </div>
+                <div class="card-body text-center d-flex flex-column p-3">
+                    <h6 class="fw-bold mb-2" style="color: var(--brown);">{{ product.name }}</h6>
+                    <div class="mt-auto">
+                        <span class="d-block mb-3 fw-bold fs-5" style="color: var(--accent);">{{ product.price }} ر.س</span>
+                        
+                        <a href="{% url 'add_to_cart' product.id %}" class="btn btn-login w-100 py-2 rounded-pill shadow-sm">
+                            <i class="bi bi-cart-plus me-1"></i> إضافة للسلة
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <p class="text-muted">عذراً، لا توجد منتجات تطابق بحثك حالياً.</p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
+
 <style>
-    .product-card { border-radius: 20px; transition: 0.3s; }
-    .product-card:hover { transform: translateY(-5px); }
+    .product-card { 
+        border-radius: 20px; 
+        transition: all 0.3s ease-in-out; 
+        background: white;
+    }
+    .product-card:hover { 
+        transform: translateY(-8px); 
+        box-shadow: 0 10px 20px rgba(236, 64, 122, 0.15) !important;
+    }
+    .btn-brown:hover {
+        opacity: 0.9;
+    }
 </style>
 {% endblock %}
