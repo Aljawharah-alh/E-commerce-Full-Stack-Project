@@ -32,20 +32,12 @@ The application is engineered as a complete **Full-Stack** solution, managing th
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 * **Backend:** Python, Django
 * **Frontend:** HTML5, CSS3, Bootstrap 5
 * **Database:** SQL 
 * **Logic Layers:** MVT Pattern, Session Handling, ModelForms
 
 
----
 
-## ⚙️ System Modules
-| Module | Technical Implementation |
-| :--- | :--- |
-| **Identity Management** | Authentication logic with protected routes and decorators. |
-| **Catalog Engine** | Dynamic database queries with search and filter optimizations. |
-| **Cart Logic** | Persistent state management using backend session dictionaries. |
-| **Communication** | Integrated ModelForms for secure data validation and storage. |
 
